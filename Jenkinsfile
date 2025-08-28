@@ -4,9 +4,7 @@ pipeline {
     environment {
         DOCKER_IMAGE = "mysql_app"
         TAG = "Latest"
-        DOCKER_REGISTRY = "tejaswini745
-
-"
+        DOCKER_REGISTRY = "tejaswini745"
     }
     stages {
         stage ('DOCKER_BUILD'){
