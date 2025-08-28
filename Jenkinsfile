@@ -10,8 +10,8 @@ pipeline {
     stages {
         stage('Docker Build') {
             steps {
-                sh """
-                    docker build -t ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${TAG} .
+                bat """
+                    docker build -t %DOCKER_REGISTRY%/%DOCKER_IMAGE%:%TAG% .
                 """
             }
         }
@@ -19,12 +19,13 @@ pipeline {
         stage('Docker Push') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                    sh """
-                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                        docker push ${DOCKER_REGISTRY}/${DOCKER_IMAGE}:${TAG}
+                    bat """
+                        echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
+                        docker push %DOCKER_REGISTRY%/%DOCKER_IMAGE%:%TAG%
                     """
                 }
             }
         }
-    }
-} 
+    }    
+
+}
