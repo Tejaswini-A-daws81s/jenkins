@@ -5,6 +5,7 @@ pipeline {
         DOCKER_IMAGE = "mysql_app"
         TAG = "latest"
         DOCKER_REGISTRY = "tejaswini745"
+        DOCKER_USER = "tejaswini745"
     }
 
     stages {
